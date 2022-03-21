@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {App} from './App';
+import {MapsLineAdmin} from './MapsLineAdmin';
 
 // @ts-ignore
 window.react = {};
 // @ts-ignore
-window.react.Test = (container: string) => {
+window.react.App = (container: HTMLElement) => {
     ReactDOM.render(
         <App/>,
-        document.getElementById(container),
+        container,
     );
 };
+
+// @ts-ignore
+window.react.MapsLineAdmin = (container: HTMLElement) => {
+    ReactDOM.render(
+        <MapsLineAdmin/>,
+        container,
+    );
+};
+

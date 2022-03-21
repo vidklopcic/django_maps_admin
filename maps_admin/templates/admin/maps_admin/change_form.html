@@ -1,0 +1,16 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+
+{% block extrahead %}{{ block.super }}
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="{% static 'maps_admin/maps_admin.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <div id="app">loading...</div>
+    <script>
+        window.react.MapsLineAdmin(document.getElementById('app'));
+    </script>
+{% endblock %}

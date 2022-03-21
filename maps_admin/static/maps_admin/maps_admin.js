@@ -26,7 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ \"./src/App.tsx\");\n\n\n // @ts-ignore\n\nwindow.react = {}; // @ts-ignore\n\nwindow.react.Test = function (container) {\n  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.App, null), document.getElementById(container));\n};\n\n//# sourceURL=webpack://maps_admin/./src/Index.tsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ \"./src/App.tsx\");\n/* harmony import */ var _MapsLineAdmin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MapsLineAdmin */ \"./src/MapsLineAdmin.tsx\");\n\n\n\n // @ts-ignore\n\nwindow.react = {}; // @ts-ignore\n\nwindow.react.App = function (container) {\n  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.App, null), container);\n}; // @ts-ignore\n\n\nwindow.react.MapsLineAdmin = function (container) {\n  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MapsLineAdmin__WEBPACK_IMPORTED_MODULE_3__.MapsLineAdmin, null), container);\n};\n\n//# sourceURL=webpack://maps_admin/./src/Index.tsx?");
+
+/***/ }),
+
+/***/ "./src/MapsLineAdmin.tsx":
+/*!*******************************!*\
+  !*** ./src/MapsLineAdmin.tsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"MapsLineAdmin\": () => (/* binding */ MapsLineAdmin)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n// src/App.jsx\n\nvar MapsLineAdmin = function MapsLineAdmin() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"h1\", null, \"Maps Line Admin\");\n};\n\n//# sourceURL=webpack://maps_admin/./src/MapsLineAdmin.tsx?");
 
 /***/ }),
 
