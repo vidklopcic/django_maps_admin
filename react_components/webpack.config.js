@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-    entry: './src/Index.tsx',
+    entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, '../maps_admin/static/maps_admin/'),
         filename: 'maps_admin.js'

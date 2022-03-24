@@ -20,7 +20,8 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "useDefineForClassFields": true,
   },
   "include": [
     "src"

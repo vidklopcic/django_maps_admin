@@ -5,44 +5,24 @@
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="{% static 'maps_admin/maps_admin.js' %}"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
 {% endblock %}
 
 {% block field_sets %}
     <style>
-        .editor-tab {
-            border: solid 1px #417690;
-            line-height: 22px;
-            color: #417690;
-            font-weight: bold;
-            transition: all 300ms;
-            width: 180px;
-            display: flex;
-            justify-content: center;
-            user-select: none;
-            cursor: pointer;
+        .leaflet-container {
+            height: var(--leaflet-container-height, 600px);
+            width: var(--leaflet-container-width, 100%);
+            border-radius: 5px;
         }
-
-        .editor-tab-active {
-            background-color: #417690;
-            color: white;
-        }
-
     </style>
-    <div class="submit-row" style="padding: 4px; justify-content: center; display: flex">
-        <span onclick="event.target.parentElement.getElementsByClassName('editor-tab-active')[0].classList.remove('editor-tab-active'); event.target.classList.add('editor-tab-active'); document.getElementById('django-admin').style.display = 'none'; document.getElementById('react-admin').style.display = 'block';"
-              style="border-radius: 3px 0 0 3px" class="editor-tab editor-tab-active">zemljevid</span>
-        <span onclick="event.target.parentElement.getElementsByClassName('editor-tab-active')[0].classList.remove('editor-tab-active'); event.target.classList.add('editor-tab-active'); this.target; document.getElementById('django-admin').style.display = 'block'; document.getElementById('react-admin').style.display = 'none';"
-              style="border-radius: 0 3px 3px 0" class="editor-tab">podatki</span>
-    </div>
-    <div id="django-admin" style="display: none;">
-        {{ block.super }}
-    </div>
-    <div id="react-admin">
-        <div id="app">loading...</div>
-        <script>
-            window.react.MapsLineAdmin(document.getElementById('app'));
-        </script>
-    </div>
-
-
+    {{ block.super }}
+    <script>
+        window.react.RenderMapsAdmin();
+    </script>
 {% endblock %}
