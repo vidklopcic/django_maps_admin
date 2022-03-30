@@ -6,7 +6,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 
 
 setup(
-    name='django-react-admin',
+    name='django-maps-admin',
     version='0.1',
     packages=find_packages(),
     include_package_data=True,
