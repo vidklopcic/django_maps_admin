@@ -136,6 +136,7 @@ export abstract class MapUtils {
         // calculate distances from point to each polyline
         for (let i = 0; i < latlngs.length - 1; i++) {
             const pointToLineDistance = GeoUtil.distanceSegment(
+                // @ts-ignore
                 polyline._map,
                 latlng,
                 latlngs[i] as LatLngExpression,

@@ -35,6 +35,7 @@ const MapStyles = styled.div<{ color: string }>`
 
 export const MapView = observer(() => {
     const store = useContext(MapsLineContext) as MapsLineStore;
+    // @ts-ignore
     const markersStore = useMemo<Map<number, Marker>>(() => new Map(), []);
     const [dragging, setDragging] = useState(false);
     let markers = useMemo(() => store.points.map((p, i) => {
