@@ -1,6 +1,6 @@
 import {autorun, makeAutoObservable} from "mobx";
 import {DjangoFormStore} from "./django_form_store";
-import {LatLngBoundsExpression, LatLngExpression, LatLngTuple} from "leaflet";
+import {LatLng, LatLngBoundsExpression, LatLngExpression, LatLngTuple, LeafletMouseEvent} from "leaflet";
 
 export class MapsLineStore {
     djangoStore: DjangoFormStore;
@@ -8,12 +8,15 @@ export class MapsLineStore {
 
     points: LatLngTuple[] = [];
     dashArray?: number[];
+    activePoint?: number;
+
     private field: string;
     private colorField: string;
     private weightField: string;
     private dashArrayField: string;
     private lineCapField: string;
     private lineJoinField: string;
+    endedDragging: number = 0;
 
     constructor(djangoStore: DjangoFormStore, field: string, color: string, weight: string, dashArray: string, lineCap: string, lineJoin: string) {
         this.djangoStore = djangoStore;
@@ -35,9 +38,12 @@ export class MapsLineStore {
 
         const updatePoints = () => {
             try {
-                const points = JSON.parse(this.djangoStore.values.get(this.field));
-                if (points) {
+                const points: [number, number][] = JSON.parse(this.djangoStore.values.get(this.field));
+                const invalid = points.filter((p) => p.length !== 2 || isNaN(p[0]) || isNaN(p[1]));
+                if (points && !invalid.length) {
                     this.points = points;
+                } else {
+                    this.djangoStore.values.set(this.field, JSON.stringify(this.points));
                 }
             } catch (e) {
                 this.djangoStore.values.set(this.field, JSON.stringify(this.points));
@@ -65,15 +71,48 @@ export class MapsLineStore {
     }
 
     get weight() {
-        return this.djangoStore.values.get(this.weightField);
+        return parseFloat(this.djangoStore.values.get(this.weightField));
     }
 
     get lineCap() {
-        console.log(this.djangoStore.values.get(this.lineCapField), 'cap');
         return this.djangoStore.values.get(this.lineCapField);
     }
 
     get lineJoin() {
         return this.djangoStore.values.get(this.lineJoinField);
+    }
+
+    onMapClick(e: LeafletMouseEvent) {
+        if (Date.now() - this.endedDragging < 100) {
+            return;
+        }
+        if (this.activePoint !== undefined) {
+            this.activePoint = undefined;
+            return;
+        }
+        this.points.push([e.latlng.lat, e.latlng.lng]);
+        this.djangoStore.values.set(this.field, JSON.stringify(this.points));
+    }
+
+    onPointClick(i: number) {
+        this.activePoint = i;
+    }
+
+    removePoint() {
+        if (this.activePoint === undefined) return;
+        this.points.splice(this.activePoint, 1);
+        this.activePoint = undefined;
+        this.djangoStore.values.set(this.field, JSON.stringify(this.points));
+    }
+
+    movePoint(index: number, latLng: LatLng) {
+        this.points[index] = [latLng.lat, latLng.lng];
+        this.djangoStore.values.set(this.field, JSON.stringify(this.points));
+    }
+
+    addPoint(segment: number[], latlng: LatLng) {
+        this.points.splice(segment[1], 0, [latlng.lat, latlng.lng]);
+        this.activePoint = undefined;
+        this.djangoStore.values.set(this.field, JSON.stringify(this.points));
     }
 }

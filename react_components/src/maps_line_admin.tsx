@@ -4,13 +4,17 @@ import {observer} from "mobx-react-lite";
 import styled from "styled-components";
 import {MapView} from "./components/map_view";
 import {MapsLineStore} from "./stores/maps_line_store";
+import {MapInteractions, MapsActions} from "./maps_line_admin/interactions";
 
 export const MapsLineContext = createContext<MapsLineStore | undefined>(undefined);
 
 const Container = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   margin-left: 160px;
+  border-radius: 5px;
+  overflow: hidden;
   
   @media (max-width: 1024px) {
     margin-left: 0;
@@ -22,6 +26,7 @@ export const MapsLineAdmin = observer(() => {
 
         return <Container>
             <MapView/>
+            {store.activePoint !== undefined && <MapsActions/>}
         </Container>;
     }
 );

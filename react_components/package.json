@@ -28,12 +28,14 @@
   },
   "dependencies": {
     "leaflet": "^1.7.1",
+    "leaflet-geometryutil": "^0.10.0",
     "mobx": "^6.5.0",
     "mobx-react-lite": "^3.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-leaflet": "^3.2.5",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "use-wave": "^1.0.0-beta.6"
   }
 }

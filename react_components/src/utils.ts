@@ -1,4 +1,6 @@
 import React, {FunctionComponentElement} from 'react';
+import {LatLngExpression, Polyline} from "leaflet";
+import GeoUtil from 'leaflet-geometryutil';
 
 interface MultiProviderProps {
     children: any;
@@ -120,5 +122,39 @@ export abstract class NumberFormatters {
     static eur(value: number): string {
         let result = value.toFixed(2).replace('.', ',');
         return result + ' €';
+    }
+}
+
+export abstract class MapUtils {
+    static getSegment(latlng: LatLngExpression, polyline: Polyline) {
+
+        // get layerpoint of user click
+        const latlngs = polyline.getLatLngs();
+        let segments = [];
+
+        // get segments of polyline
+        // calculate distances from point to each polyline
+        for (let i = 0; i < latlngs.length - 1; i++) {
+            const pointToLineDistance = GeoUtil.distanceSegment(
+                polyline._map,
+                latlng,
+                latlngs[i] as LatLngExpression,
+                latlngs[i + 1] as LatLngExpression
+            );
+
+            segments.push({
+                index: i,
+                pointToLineDistance,
+                segment: [i, i + 1]
+            });
+        }
+
+        // sort segments by shortest distance
+        segments.sort((a, b) =>
+            a.pointToLineDistance < b.pointToLineDistance ? -1 : 1
+        );
+
+        // return first entry, which has shortest distance
+        return segments[0].segment;
     }
 }

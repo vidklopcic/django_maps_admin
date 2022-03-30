@@ -1789,7 +1789,14 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-leaflet@^1.7.1:
+leaflet-geometryutil@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/leaflet-geometryutil/-/leaflet-geometryutil-0.10.0.tgz#0693d64517ac96f0e101d4a3e6e0377fc71316d1"
+  integrity sha512-4OGu2OnpHLx+7QpOY6NatrAiSWWrP/Z3HOM9ZsmQ0JWIzAytFS6SLUnKHVjwpgRzPUpV/6w0b4Fh24pVIgqFHw==
+  dependencies:
+    leaflet "^1.6.0"
+
+leaflet@^1.6.0, leaflet@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
   integrity sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==
@@ -2313,6 +2320,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-wave@^1.0.0-beta.6:
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/use-wave/-/use-wave-1.0.0-beta.6.tgz#79d26d502af6c93c1b6c9542916ef9dad7620e75"
+  integrity sha512-I4TZH0BetlD/8dHQ9QmYcTHy0yVfHcI+onV3hkHnwtsjQokDTznnDoxx8FjO1f6b/4Rk+DWNRaA9Z33bE/TFlQ==
 
 watchpack@^2.3.1:
   version "2.3.1"
