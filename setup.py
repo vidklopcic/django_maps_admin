@@ -1,5 +1,5 @@
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.rst')).read()
@@ -8,20 +8,13 @@ README = open(os.path.join(here, 'README.rst')).read()
 setup(
     name='django-react-admin',
     version='0.1',
-    packages=[
-        'proto_socket_django',
-        'proto_socket_django.gen',
-        'proto_socket_django.gen.platforms',
-        'proto_socket_django.gen.platforms.django',
-        'proto_socket_django.gen.platforms.flutter',
-        'proto_socket_django.gen.platforms.react',
-    ],
+    packages=find_packages(),
     include_package_data=True,
-    description='A simple library that works with flutter_persistent_socket library.',
+    description='Maps admin',
     long_description=README,
     author='Vid Klopcic',
     author_email='klopcic.vid@gmail.com',
-    url='https://github.com/vidklopic/flutter_persistent_socket',
+    url='https://github.com/vidklopic/django_maps_admin',
     license='MIT',
     install_requires=[
         'Django>=2.1',
