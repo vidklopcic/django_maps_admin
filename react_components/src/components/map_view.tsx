@@ -109,7 +109,7 @@ export const MapLineView = observer(() => {
                 }}
                 eventHandlers={{
                     click: (e) => {
-                        store.addPoint(MapUtils.getSegment(e.latlng, e.sourceTarget.getLatLngs()), e.latlng);
+                        store.addPoint(MapUtils.getSegment(e.latlng, e.sourceTarget.getLatLngs(), e.sourceTarget._map), e.latlng);
                         throw 'stopped propagation';
                     }
                 }}/>}
@@ -168,7 +168,7 @@ export const MapPolygonView = observer(() => {
                 }}
                 eventHandlers={{
                     click: (e) => {
-                        store.addPoint(MapUtils.getSegment(e.latlng, e.sourceTarget.getLatLngs()[0]), e.latlng);
+                        store.addPoint(MapUtils.getSegment(e.latlng, e.sourceTarget.getLatLngs()[0], e.sourceTarget._map), e.latlng);
                         throw 'stopped propagation';
                     }
                 }}/>}

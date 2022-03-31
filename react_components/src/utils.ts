@@ -1,5 +1,5 @@
 import React, {FunctionComponentElement} from 'react';
-import {LatLngExpression, Polyline} from "leaflet";
+import {LatLngExpression} from "leaflet";
 import GeoUtil from 'leaflet-geometryutil';
 
 interface MultiProviderProps {
@@ -126,7 +126,7 @@ export abstract class NumberFormatters {
 }
 
 export abstract class MapUtils {
-    static getSegment(latlng: LatLngExpression, latlngs: any) {
+    static getSegment(latlng: LatLngExpression, latlngs: any, map: any) {
 
         // get layerpoint of user click
         let segments = [];
@@ -136,7 +136,7 @@ export abstract class MapUtils {
         for (let i = 0; i < latlngs.length - 1; i++) {
             const pointToLineDistance = GeoUtil.distanceSegment(
                 // @ts-ignore
-                polyline._map,
+                map,
                 latlng,
                 latlngs[i] as LatLngExpression,
                 latlngs[i + 1] as LatLngExpression
