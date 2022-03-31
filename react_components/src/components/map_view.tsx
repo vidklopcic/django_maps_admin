@@ -22,7 +22,7 @@ const MapStyles = styled.div<{ color: string }>`
 
   & .line-icon {
     background-color: white;
-    border: solid 1px ${({color}) => color};
+    border: solid 3px ${({color}) => color};
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 100%;
