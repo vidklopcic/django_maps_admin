@@ -42,7 +42,7 @@ const MapStyles = styled.div<{ color: string }>`
 export const MapMarkerView = observer(() => {
     const store = useContext(MapsMarkerContext) as MapsMarkerStore;
     return <MapContainer
-        center={[store.lat ?? 14.510192871093752, store.lng ?? 46.05286280496623]}
+        center={[store.lat ?? 46.05286280496623, store.lng ?? 14.510192871093752]}
         zoom={12}
         zoomControl={false}
         style={{zIndex: '0', cursor: 'crosshair'}}>
