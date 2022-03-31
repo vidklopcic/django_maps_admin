@@ -28,3 +28,22 @@ class MapsLine(models.Model):
 
     class Meta:
         abstract = True
+
+
+class MapsPolygon(models.Model):
+    label = models.CharField(max_length=255, unique=True)
+    border_color = ColorField(format='hexa')
+    fill_color = ColorField(format='hexa')
+    weight = models.FloatField(default=3)
+    dash_array = models.JSONField(null=True, blank=True)
+    line_cap = models.CharField(max_length=255, choices=MapsLine.LineCap.choices, default=MapsLine.LineCap.round)
+    line_join = models.CharField(max_length=255, choices=MapsLine.LineJoin.choices, default=MapsLine.LineJoin.round)
+    points = models.JSONField(help_text='[[46.053830, 14.508713], ...] - [[lat, lng], ...]')
+
+    def __str__(self):
+        return self.label
+
+    class Meta:
+        abstract = True
+
+

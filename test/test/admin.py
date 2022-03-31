@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib import admin
 
-from maps_admin.fields import MapsAdminLineField, MapsAdminDashArrayField
-from test.models import MapsLine
+from maps_admin.fields import MapsAdminLineField, MapsAdminPolygonField, MapsAdminDashArrayField
+from test.models import MapsLine, MapsPolygon
 
 
 class MapsLineForm(forms.ModelForm):
@@ -21,6 +21,28 @@ class MapsLineForm(forms.ModelForm):
         }
 
 
+class MapsPolygonForm(forms.ModelForm):
+    class Meta:
+        model = MapsPolygon
+        fields = '__all__'
+        widgets = {
+            'points': MapsAdminPolygonField(
+                MapsPolygon.border_color,
+                MapsPolygon.fill_color,
+                MapsPolygon.weight,
+                MapsPolygon.dash_array,
+                MapsPolygon.line_cap,
+                MapsPolygon.line_join,
+            ),
+            'dash_array': MapsAdminDashArrayField()
+        }
+
+
 @admin.register(MapsLine)
 class MapsLineAdmin(admin.ModelAdmin):
     form = MapsLineForm
+
+
+@admin.register(MapsPolygon)
+class MapsPolygonAdmin(admin.ModelAdmin):
+    form = MapsPolygonForm

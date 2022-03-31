@@ -18,6 +18,21 @@ class MapsAdminLineField(forms.Textarea):
         })
 
 
+class MapsAdminPolygonField(forms.Textarea):
+    def __init__(self, color, fill_color, weight, dash_array, line_cap, line_join):
+        super().__init__(attrs={
+            'data-maps-admin': 'polygon',
+            'data-maps-admin-weight': weight.field.attname,
+            'data-maps-admin-color': color.field.attname,
+            'data-maps-admin-fill-color': fill_color.field.attname,
+            'data-maps-admin-dash-array': dash_array.field.attname,
+            'data-maps-admin-line-cap': line_cap.field.attname,
+            'data-maps-admin-line-join': line_join.field.attname,
+            'rows': 4,
+            'cols': 90
+        })
+
+
 class MapsAdminDashArrayField(forms.Textarea):
     def __init__(self):
         super().__init__(attrs={

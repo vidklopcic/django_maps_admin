@@ -6,6 +6,8 @@ import {MapsLineStore} from "./stores/maps_line_store";
 import {configure} from "mobx";
 import {DashArrayStore} from "./stores/dash_array_store";
 import {DashArrayAdmin, DashArrayContext} from "./dash_array_admin";
+import {MapsPolygonStore} from "./stores/maps_polygon_store";
+import {MapsPolygonAdmin, MapsPolygonContext} from './maps_polygon_admin';
 
 configure({
     enforceActions: "never",
@@ -19,6 +21,7 @@ const fieldName = (field: Element, name: string) => field.attributes.getNamedIte
 // @ts-ignore
 window.react.RenderMapsAdmin = () => {
     const djangoFormStore = new DjangoFormStore();
+
     for (const field of Array.from(document.querySelectorAll('textarea[data-maps-admin="line"]'))) {
         const store = new MapsLineStore(
             djangoFormStore,
@@ -38,6 +41,31 @@ window.react.RenderMapsAdmin = () => {
             <MapsLineContext.Provider value={store}>
                 <MapsLineAdmin/>
             </MapsLineContext.Provider>,
+            container,
+        );
+    }
+
+    for (const field of Array.from(document.querySelectorAll('textarea[data-maps-admin="polygon"]'))) {
+        const store = new MapsPolygonStore(
+            djangoFormStore,
+            (field as HTMLTextAreaElement).name,
+            fieldName(field, 'color'),
+            fieldName(field, 'fill-color'),
+            fieldName(field, 'weight'),
+            fieldName(field, 'dash-array'),
+            fieldName(field, 'line-cap'),
+            fieldName(field, 'line-join'),
+        );
+        const container = document.createElement('div');
+        container.style.borderRadius = '5px';
+        container.style.overflow = 'hidden';
+        container.style.width = '100%';
+        field.parentElement!.append(container);
+        console.log(store);
+        ReactDOM.render(
+            <MapsPolygonContext.Provider value={store}>
+                <MapsPolygonAdmin/>
+            </MapsPolygonContext.Provider>,
             container,
         );
     }

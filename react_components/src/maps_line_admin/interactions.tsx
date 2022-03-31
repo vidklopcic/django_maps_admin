@@ -34,7 +34,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-export const MapInteractions = observer(() => {
+export const LineMapInteractions = observer(() => {
     const store = useContext(MapsLineContext) as MapsLineStore;
     const map = useMapEvents({
         click: (e) => store.onMapClick(e)
@@ -42,7 +42,7 @@ export const MapInteractions = observer(() => {
     return null;
 });
 
-export const MapsActions = observer(() => {
+export const LineMapsActions = observer(() => {
     const store = useContext(MapsLineContext) as MapsLineStore;
     const wave = useWave();
     return <Container>
