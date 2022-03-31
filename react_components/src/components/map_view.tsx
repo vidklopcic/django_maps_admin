@@ -2,7 +2,9 @@ import React, {useContext, useEffect, useMemo, useRef, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {DivIcon} from "leaflet";
 import {MapContainer, Marker, Polygon, Polyline, TileLayer} from 'react-leaflet'
+import {MapsMarkerContext} from "../maps_marker_admin";
 import {MapsLineContext} from "../maps_line_admin";
+import {MapsMarkerStore} from "../stores/maps_marker_store";
 import {MapsLineStore} from "../stores/maps_line_store";
 import {LineMapInteractions} from "../maps_line_admin/interactions";
 import styled from "styled-components";
@@ -11,6 +13,7 @@ import {CaughtException} from "mobx/dist/core/derivation";
 import {MapsPolygonContext} from "../maps_polygon_admin";
 import {MapsPolygonStore} from "../stores/maps_polygon_store";
 import {PolygonMapInteractions} from "../maps_polygon_admin/interactions";
+import {MarkerMapInteractions} from "../maps_marker_admin/interactions";
 
 const MapStyles = styled.div<{ color: string }>`
   display: contents;
@@ -35,6 +38,32 @@ const MapStyles = styled.div<{ color: string }>`
     }
   }
 `;
+
+export const MapMarkerView = observer(() => {
+    const store = useContext(MapsMarkerContext) as MapsMarkerStore;
+    return <MapContainer
+        center={[store.lat ?? 14.510192871093752, store.lng ?? 46.05286280496623]}
+        zoom={12}
+        zoomControl={false}
+        style={{zIndex: '0', cursor: 'crosshair'}}>
+        {store.lat && store.lng && <Marker
+            position={[store.lat, store.lng]}
+            draggable={true}
+            autoPan={true}
+            eventHandlers={{
+                dragend: (e) => {
+                    const latLng = e.target.getLatLng();
+                    store.lat = latLng.lat;
+                    store.lng = latLng.lng;
+                },
+            }}
+        />}
+        <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <MarkerMapInteractions/>
+    </MapContainer>;
+});
 
 export const MapLineView = observer(() => {
     const store = useContext(MapsLineContext) as MapsLineStore;

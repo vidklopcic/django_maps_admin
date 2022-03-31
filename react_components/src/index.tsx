@@ -8,6 +8,8 @@ import {DashArrayStore} from "./stores/dash_array_store";
 import {DashArrayAdmin, DashArrayContext} from "./dash_array_admin";
 import {MapsPolygonStore} from "./stores/maps_polygon_store";
 import {MapsPolygonAdmin, MapsPolygonContext} from './maps_polygon_admin';
+import {MapsMarkerStore} from "./stores/maps_marker_store";
+import {MapsMarkerAdmin, MapsMarkerContext} from "./maps_marker_admin";
 
 configure({
     enforceActions: "never",
@@ -21,6 +23,26 @@ const fieldName = (field: Element, name: string) => field.attributes.getNamedIte
 // @ts-ignore
 window.react.RenderMapsAdmin = () => {
     const djangoFormStore = new DjangoFormStore();
+
+    for (const field of Array.from(document.querySelectorAll('input[data-maps-admin="marker"]'))) {
+        const store = new MapsMarkerStore(
+            djangoFormStore,
+            fieldName(field, 'lat'),
+            fieldName(field, 'lng'),
+        );
+        const container = document.createElement('div');
+        container.style.borderRadius = '5px';
+        container.style.overflow = 'hidden';
+        container.style.width = '100%';
+        container.style.marginTop = '8px';
+        field.parentElement!.append(container);
+        ReactDOM.render(
+            <MapsMarkerContext.Provider value={store}>
+                <MapsMarkerAdmin/>
+            </MapsMarkerContext.Provider>,
+            container,
+        );
+    }
 
     for (const field of Array.from(document.querySelectorAll('textarea[data-maps-admin="line"]'))) {
         const store = new MapsLineStore(

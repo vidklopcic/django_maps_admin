@@ -1,8 +1,20 @@
 from django import forms
 from django.contrib import admin
 
-from maps_admin.fields import MapsAdminLineField, MapsAdminPolygonField, MapsAdminDashArrayField
-from test.models import MapsLine, MapsPolygon
+from maps_admin.fields import MapsAdminLineField, MapsAdminPolygonField, MapsAdminDashArrayField, MapsAdminMarkerField
+from test.models import MapsLine, MapsPolygon, MapsMarker
+
+
+class MapsMarkerForm(forms.ModelForm):
+    class Meta:
+        model = MapsMarker
+        fields = '__all__'
+        widgets = {
+            'lng': MapsAdminMarkerField(
+                MapsMarker.lat,
+                MapsMarker.lng,
+            ),
+        }
 
 
 class MapsLineForm(forms.ModelForm):
@@ -36,6 +48,11 @@ class MapsPolygonForm(forms.ModelForm):
             ),
             'dash_array': MapsAdminDashArrayField()
         }
+
+
+@admin.register(MapsMarker)
+class MapsMarkerAdmin(admin.ModelAdmin):
+    form = MapsMarkerForm
 
 
 @admin.register(MapsLine)

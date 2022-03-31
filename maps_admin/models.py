@@ -2,6 +2,17 @@ from colorfield.fields import ColorField
 from django.db import models
 
 
+class MapsMarker(models.Model):
+    label = models.CharField(max_length=255, unique=True)
+    lat = models.FloatField()
+    lng = models.FloatField()
+
+    def __str__(self):
+        return self.label
+
+    class Meta:
+        abstract = True
+
 class MapsLine(models.Model):
     class LineCap(models.TextChoices):
         butt = 'butt', 'butt'
@@ -28,7 +39,6 @@ class MapsLine(models.Model):
 
     class Meta:
         abstract = True
-
 
 class MapsPolygon(models.Model):
     label = models.CharField(max_length=255, unique=True)

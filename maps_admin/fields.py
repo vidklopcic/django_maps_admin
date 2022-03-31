@@ -1,7 +1,15 @@
 import inspect
 
 from django import forms
-from django.db.models.query_utils import DeferredAttribute
+
+
+class MapsAdminMarkerField(forms.NumberInput):
+    def __init__(self, lat, lng):
+        super().__init__(attrs={
+            'data-maps-admin': 'marker',
+            'data-maps-admin-lat': lat.field.attname,
+            'data-maps-admin-lng': lng.field.attname,
+        })
 
 
 class MapsAdminLineField(forms.Textarea):
