@@ -126,12 +126,10 @@ export abstract class NumberFormatters {
 }
 
 export abstract class MapUtils {
-    static getSegment(latlng: LatLngExpression, polyline: any) {
+    static getSegment(latlng: LatLngExpression, latlngs: any) {
 
         // get layerpoint of user click
-        const latlngs = polyline.getLatLngs()[0];
         let segments = [];
-        console.log(latlngs);
 
         // get segments of polyline
         // calculate distances from point to each polyline
