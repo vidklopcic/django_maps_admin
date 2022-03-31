@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib import admin
 
-from .fields import MapsAdminLineField, MapsAdminDashArrayField
-from .models import *
+from maps_admin.fields import MapsAdminLineField, MapsAdminDashArrayField
+from test.models import MapsLine
 
 
 class MapsLineForm(forms.ModelForm):

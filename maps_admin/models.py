@@ -25,3 +25,6 @@ class MapsLine(models.Model):
 
     def __str__(self):
         return self.label
+
+    class Meta:
+        abstract = True
