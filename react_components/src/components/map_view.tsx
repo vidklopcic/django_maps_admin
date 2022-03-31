@@ -14,7 +14,7 @@ const MapStyles = styled.div<{ color: string }>`
 
   & .line-icon-active {
     background-color: #ccc;
-    border: solid 1px ${({color}) => color};
+    border: solid 3px ${({color}) => color};
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 100%;
@@ -43,7 +43,7 @@ export const MapView = observer(() => {
         if (!dragging || !markersStore.has(i)) {
             markersStore.set(i, <Marker
                 icon={new DivIcon({
-                    iconSize: [store.weight + 7, store.weight + 7],
+                    iconSize: [10, 10],
                     className: active ? 'line-icon-active' : 'line-icon',
                 })}
                 key={i}
