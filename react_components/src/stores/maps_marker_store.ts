@@ -14,11 +14,13 @@ export class MapsMarkerStore {
     }
 
     get lat(): number | undefined {
-        return parseFloat(this.djangoStore.values.get(this.latField));
+        const c = parseFloat(this.djangoStore.values.get(this.latField));
+        return isNaN(c) ? undefined : c;
     }
 
     get lng(): number | undefined {
-        return parseFloat(this.djangoStore.values.get(this.lngField));
+        const c = parseFloat(this.djangoStore.values.get(this.lngField));
+        return isNaN(c) ? undefined : c;
     }
 
     set lat(v: number | undefined) {
