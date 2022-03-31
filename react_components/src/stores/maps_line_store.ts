@@ -66,8 +66,19 @@ export class MapsLineStore {
         autorun(updateDashArray);
     }
 
-    get color() {
+    get color(): string {
         return this.djangoStore.values.get(this.colorField);
+    }
+
+    get lighterColor() {
+        const a = 0x60;
+        const rgba = [
+            parseInt(this.color.substring(1, 3), 16) + a,
+            parseInt(this.color.substring(3, 5), 16) + a,
+            parseInt(this.color.substring(5, 7), 16) + a,
+            parseInt(this.color.substring(7, 9), 16),
+        ];
+        return '#' + rgba.map((e) => (e > 255 ? e - 2 * a : e).toString(16).padStart(2, '0')).join('');
     }
 
     get weight() {

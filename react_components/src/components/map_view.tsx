@@ -14,7 +14,7 @@ const MapStyles = styled.div<{ color: string }>`
 
   & .line-icon-active {
     background-color: #ccc;
-    border: solid 3px ${({color}) => color};
+    border: solid 2px ${({color}) => color};
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 100%;
@@ -22,7 +22,7 @@ const MapStyles = styled.div<{ color: string }>`
 
   & .line-icon {
     background-color: white;
-    border: solid 3px ${({color}) => color};
+    border: solid 2px ${({color}) => color};
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 100%;
@@ -63,7 +63,7 @@ export const MapView = observer(() => {
         }
         return markersStore.get(i);
     }), [store.points, store.activePoint]);
-    return <MapStyles color={store.color}>
+    return <MapStyles color={store.lighterColor}>
         <MapContainer bounds={store.bounds} zoomControl={false}
                       style={{zIndex: '0', cursor: 'crosshair'}}>
             {store.points.length && <Polyline
